@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BAMCIS.GeoJSON;
 
 namespace RealtorGoGoSpider
 {
@@ -493,6 +494,7 @@ namespace RealtorGoGoSpider
 
             foreach (PropertyDetailByJaJa doc in documents)
             {
+                
                 MapData map = new MapData(ObjectId.GenerateNewId().ToString(),doc.Location, doc.MlsNo);
                 if (maps.Find(c => c.MLSNo == doc.MlsNo).CountDocuments() > 0)
                 {

@@ -79,6 +79,7 @@ namespace RealtorGoGoSpider.BusinessObject
         public string Washrooms { get; set; }
         public string Garage { get; set; }
         public string Footage { get; set; }
+        public string HouseType { get; set; }
         public string ListingDate { get; set; }
         public string ListingPrice { get; set; }
         public string TransactionDate { get; set; }

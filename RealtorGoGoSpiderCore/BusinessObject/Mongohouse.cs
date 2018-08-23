@@ -26,6 +26,37 @@ namespace RealtorGoGoSpider.BusinessObject
 
         [JsonProperty("MLS#")]
         public string MLSNo { get; set; }
+
+        [JsonProperty("Address")]
+        public string Address { get; set; }
+
+        [JsonProperty("ListingPrice")]
+        public string ListingPrice { get; set; }
+
+        [JsonProperty("ListingDate")]
+        public string ListingDate { get; set; }
+
+        [JsonProperty("Beds")]
+        public string Beds { get; set; }
+
+        [JsonProperty("Washrooms")]
+        public string Washrooms { get; set; }
+
+        [JsonProperty("HouseType")]
+        public string HouseType { get; set; }
+
+        [JsonProperty("City")]
+        public string City { get; set; }
+
+        [JsonProperty("Community")]
+        public string Community { get; set; }
+
+        [JsonProperty("District")] 
+        public string District { get; set; }
+
+        [JsonProperty("ImageUrl")]
+        public string ImageUrl { get; set; }
+
     }
 
     public class SearchUrl

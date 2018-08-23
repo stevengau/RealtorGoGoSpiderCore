@@ -22,9 +22,10 @@ namespace RealtorGoGoSpider
             Console.WriteLine("******RealJaJaForLease******");
             Console.WriteLine("Start DateTime: {0}", DateTime.Now);
 
+            //new MongoClient("mongodb://usuariocualquiera:tuclave@localhost:27017/BASEDEDATOS");
             MongoClient mongoClient = new MongoClient(MongoUrl.Create("mongodb://localhost:27017"));
             IMongoDatabase mongoDatabase = mongoClient.GetDatabase("RealEstate");
-
+            
             mongoDatabase.DropCollection("WaitProcessingForSaleJaJa");
 
             RealJajaForSaleMap(41, -83, 47, -73, 1);
@@ -376,6 +377,8 @@ namespace RealtorGoGoSpider
                         houseDetail.TransactionDate = properties[i + 1].InnerText.Replace("\n", "").Trim();
                     if (properties[i].InnerText.Replace("\n", "").Trim().StartsWith("Appr. Footage"))
                         houseDetail.Footage = properties[i + 1].InnerText.Replace("\n", "").Trim();
+                    if (properties[i].InnerText.Replace("\n", "").Trim().StartsWith("Property Type"))
+                        houseDetail.HouseType = properties[i + 1].InnerText.Replace("\n", "").Trim();
 
                 }
 
@@ -536,6 +539,8 @@ namespace RealtorGoGoSpider
                         houseDetail.TransactionDate = properties[i + 1].InnerText.Replace("\n", "").Trim();
                     if (properties[i].InnerText.Replace("\n", "").Trim().StartsWith("Appr. Footage"))
                         houseDetail.Footage = properties[i + 1].InnerText.Replace("\n", "").Trim();
+                    if (properties[i].InnerText.Replace("\n", "").Trim().StartsWith("Property Type"))
+                        houseDetail.HouseType = properties[i + 1].InnerText.Replace("\n", "").Trim();
 
                 }
 
