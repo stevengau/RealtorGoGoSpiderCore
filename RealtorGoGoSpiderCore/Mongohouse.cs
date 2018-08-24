@@ -460,6 +460,9 @@ namespace RealtorGoGoSpider
             foreach(PropertyDetailByJaJa doc in documents)
             {
                 MapData map = new MapData(ObjectId.GenerateNewId().ToString() ,doc.Location, doc.MlsNo);
+                map.Address = doc.Address;
+                map.Beds = doc.Bedrooms;
+
                 if (maps.Find(c => c.MLSNo == doc.MlsNo).CountDocuments() > 0)
                 {
                     maps.DeleteOne(c => c.MLSNo == doc.MlsNo);
@@ -477,6 +480,17 @@ namespace RealtorGoGoSpider
             foreach (PropertyDetailByJaJa doc in documents)
             {
                 MapData map = new MapData(ObjectId.GenerateNewId().ToString(),doc.Location, doc.MlsNo);
+                map.Address = doc.Address;
+                map.Beds = doc.Bedrooms;
+                map.Washrooms = doc.Washrooms;
+                map.HouseType = doc.HouseType;
+                map.ListingDate = doc.ListingDate;
+                map.ListingPrice = doc.ListingPrice;
+                map.ImageUrl = doc.Pictures[0].url;
+                map.City = doc.City;
+                map.Community = doc.Community;
+                map.District = doc.District;
+
                 if (maps.Find(c => c.MLSNo == doc.MlsNo).CountDocuments() > 0)
                 {
                     maps.DeleteOne(c => c.MLSNo == doc.MlsNo);

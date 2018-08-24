@@ -36,7 +36,7 @@ namespace RealtorGoGoSpiderCore
 
             //Console.WriteLine("******Update Historical Data******");
 
-            RealtorGoGoSpider.Mongohouse.GetRecordToUpdateHistoricalTransaction(now.ToString("yyyy-MM-dd"));
+            //RealtorGoGoSpider.Mongohouse.GetRecordToUpdateHistoricalTransaction(now.ToString("yyyy-MM-dd"));
 
             RealtorGoGoSpider.Mongohouse.UpdateMapData(now.ToString("yyyy-MM-dd"));
 
