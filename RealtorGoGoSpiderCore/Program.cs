@@ -8,9 +8,12 @@ namespace RealtorGoGoSpiderCore
         {
             DateTime now = DateTime.Now;
             Console.WriteLine("******Start Lease Process******");
-            RealtorGoGoSpider.RealJaJa.RealJaJaForLease(now.ToString("yyyy-MM-dd"));
 
-            RealtorGoGoSpider.RealJaJa.GetWaitLeaseProcessing(now.ToString("yyyy-MM-dd"));
+            Console.WriteLine(RealtorGoGoSpider.Mongohouse.TestBsonGeneration());
+
+            //RealtorGoGoSpider.RealJaJa.RealJaJaForLease(now.ToString("yyyy-MM-dd"));
+
+            //RealtorGoGoSpider.RealJaJa.GetWaitLeaseProcessing(now.ToString("yyyy-MM-dd"));
 
             RealtorGoGoSpider.RealJaJa.GetWaitLeaseHTMLProcessing(now.ToString("yyyy-MM-dd"));
 
