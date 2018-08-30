@@ -69,7 +69,7 @@ namespace RealtorGoGoSpider.BusinessObject
 
     }
 
-    public class PropertyDetailByJaJa
+    public class PropertyDetailByJaJa : IForMap
     {
         public string _id { get; set; }
         public string JmlsNo { get; set; }
@@ -102,5 +102,25 @@ namespace RealtorGoGoSpider.BusinessObject
         public bool Active { get; set; }
 
         public String UpdateDate { get; set; }
+    }
+
+    public interface IForMap
+    {
+        string _id { get; set; }
+        string MlsNo { get; set; }
+        [JsonProperty("Location")]
+        Twodsphere Location { get; set; }
+
+        bool Active { get; set; }
+    }
+
+    public class ForMap: IForMap
+    {
+        public string _id { get; set; }
+        public string MlsNo { get; set; }
+        [JsonProperty("Location")]
+        public Twodsphere Location { get; set; }
+
+        public bool Active { get; set; }
     }
 }

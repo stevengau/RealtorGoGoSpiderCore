@@ -474,38 +474,23 @@ namespace RealtorGoGoSpider
 
             var ForLeasecollection = mongoDatabase.GetCollection<PropertyDetailByJaJa>("ForLease");
 
-            var ForLeaseMap = mongoDatabase.GetCollection<BsonDocument>("ForLeaseMap");
+            var ForLeaseMap = mongoDatabase.GetCollection<ForMap>("ForLeaseMap");
 
             var ForLeasedocuments = ForLeasecollection.Find(_ => true).ToList();
             foreach (PropertyDetailByJaJa doc in ForLeasedocuments)
             {
-                Dictionary<string, string> mapper = new Dictionary<string, string>();
-                mapper.Add("MlsNo", doc.MlsNo);
-                mapper.Add("Address", doc.Address);
-                mapper.Add("Bedrooms", doc.Bedrooms);
-                mapper.Add("Washrooms", doc.Washrooms);
-                mapper.Add("HouseType", doc.HouseType);
-                mapper.Add("ListingDate", doc.ListingDate);
-                mapper.Add("ListingPrice", doc.ListingPrice);
-                mapper.Add("ImageUrl", doc.Pictures[0].url);
-                mapper.Add("City", doc.City);
-                mapper.Add("District", doc.District);
-                mapper.Add("Community", doc.Community);
-
-                BsonDocument newDoc = new BsonDocument("type", "Feature")
-                    .Add(new BsonElement("properties", new BsonDocument(mapper)))
-                    .Add(new BsonElement("geometry", new BsonDocument("type", "Point").Add(new BsonElement("coordinates", new BsonArray(new List<Double> { doc.Location.coordinates[1], doc.Location.coordinates[0] })))));
-
-                ForLeaseMap.InsertOne(newDoc);
-
-
-                //if (maps.Find(c => c.MLSNo == doc.MlsNo).CountDocuments() > 0)
-                //{
-                //    maps.DeleteOne(c => c.MLSNo == doc.MlsNo);
-                //    maps.InsertOne(map);
-                //}
-                //else
-                //    maps.InsertOne(map);
+                ForMap mapDoc = Newtonsoft.Json.JsonConvert.DeserializeObject<ForMap>(Newtonsoft.Json.JsonConvert.SerializeObject(doc));
+                try
+                {
+                    if (ForLeaseMap.Find(c => c.MlsNo == doc.MlsNo).CountDocuments() > 0)
+                    {
+                        ForLeaseMap.DeleteOne(c => c.MlsNo == doc.MlsNo);
+                        ForLeaseMap.InsertOne(mapDoc);
+                    }
+                    else
+                        ForLeaseMap.InsertOne(mapDoc);
+                }
+                catch (Exception) { }
             }
 
             //collection = mongoDatabase.GetCollection<PropertyDetailByJaJa>("ForSold");
@@ -516,8 +501,8 @@ namespace RealtorGoGoSpider
 
             //foreach (PropertyDetailByJaJa doc in documents)
             //{
-                
-            //    MapData map = new MapData(ObjectId.GenerateNewId().ToString(),doc.Location, doc.MlsNo);
+
+            //    MapData map = new MapData(ObjectId.GenerateNewId().ToString(), doc.Location, doc.MlsNo);
             //    if (maps.Find(c => c.MLSNo == doc.MlsNo).CountDocuments() > 0)
             //    {
             //        maps.DeleteOne(c => c.MLSNo == doc.MlsNo);
