@@ -146,6 +146,7 @@ namespace RealtorGoGoSpider
 
             foreach (PropertyDetailByJaJa o in lc)
             {
+                o.TransactionDate = DateTime.Now.ToString("yyyy-mm-dd");
                 o.Active = false;
                 collection.ReplaceOne(c => c.MlsNo == o.MlsNo, o);
             }
@@ -269,6 +270,7 @@ namespace RealtorGoGoSpider
                         {
                             collection.InsertOne(bsonDoc);
                         }
+                        
                         #endregion
                     }
                 }
